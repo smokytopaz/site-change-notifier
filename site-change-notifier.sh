@@ -11,11 +11,11 @@ site="example.com"
 notify1="receivers@email.address"
 from="From:senders@email.address"
 
-#comparing the files
-compare=(`diff "$F1" "$F2"`)
-
 #grabbing the site
 (`wget -O "$F2" "$site"`)
+
+#comparing the files
+compare=(`diff "$F1" "$F2"`)
 
 if [ "$compare" != "" ]; then
 	(`echo 'A change has been made to '$site'' | mail -s "SITE CHANGE DETECTED" "$notify1" -a "$from"`)
